@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Typography, LinearProgress } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { red } from "@mui/material/colors";
 
 const CustomCard = ({
   id,
@@ -12,15 +14,37 @@ const CustomCard = ({
   updateLevels,
 }) => {
   const percentage = parseInt((total / target) * 100);
+  let hColor =
+    percentage <= 33
+      ? "rgb(255,0,0)"
+      : percentage <= 66
+      ? "rgb(255, 215, 0)"
+      : "rgb(0,128,0)";
+
+  let bgColor = hColor.split(")")[0] + ", 0.2)";
+
+  const useStyles = makeStyles(() => ({
+    root: {
+      "& .MuiLinearProgress-colorPrimary": {
+        backgroundColor: hColor,
+      },
+      "& .MuiLinearProgress-barColorPrimary": {
+        backgroundColor: hColor,
+      },
+    },
+  }));
+  const classes = useStyles();
+
   return (
     <Card
       style={{
-        width: "340px",
+        width: "300px",
         height: "160px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "10px",
+        padding: "20px",
+        margin: "20px",
         boxShadow: "0px 0px 5px 2px rgb(0,0,0,0.3)",
       }}
       onClick={() => {
@@ -62,19 +86,29 @@ const CustomCard = ({
           </div>
           <div
             style={{
-              color: "gold",
-              backgroundColor: "rgb(255, 239, 219)",
+              color: hColor,
+              backgroundColor: bgColor,
               fontWeight: "bold",
-              padding: "10px 15px",
+              padding: "6px 15px",
             }}
           >
-            Off Track
+            {percentage <= 33
+              ? "At Risk"
+              : percentage <= 66
+              ? "Off Track"
+              : "On Track"}
           </div>
         </div>
         <LinearProgress
           variant="determinate"
           value={percentage}
-          style={{ height: "10px", borderRadius: "5px" }}
+          className={classes.root}
+          style={{
+            height: "12px",
+            borderRadius: "6px",
+            backgroundColor: bgColor,
+            margin: "10px 0px 6px 0px",
+          }}
         />
       </div>
     </Card>
