@@ -6,11 +6,19 @@ import CustomCard from "./CustomCard";
 
 const data = [
   { id: "1", title: "TATA STEEL", total: 200, target: 400, level: 0 },
+
   { id: "2", title: "Factory A", total: 20, target: 100, parent: 1, level: 1 },
   { id: "3", title: "Factory B", total: 150, target: 200, parent: 1, level: 1 },
   { id: "4", title: "Factory C", total: 30, target: 100, parent: 1, level: 1 },
-  { id: "5", title: "Godown A", total: 10, target: 50, parent: 4, level: 2 },
-  { id: "6", title: "Godown B", total: 20, target: 50, parent: 4, level: 2 },
+
+  { id: "5", title: "Godown A", total: 10, target: 50, parent: 2, level: 2 },
+  { id: "6", title: "Godown B", total: 10, target: 50, parent: 2, level: 2 },
+
+  { id: "7", title: "Godown C", total: 80, target: 100, parent: 3, level: 2 },
+  { id: "8", title: "Godown D", total: 70, target: 100, parent: 3, level: 2 },
+
+  { id: "9", title: "Godown E", total: 10, target: 50, parent: 4, level: 2 },
+  { id: "10", title: "Godown F", total: 20, target: 50, parent: 4, level: 2 },
 ];
 
 function App() {
